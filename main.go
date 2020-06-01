@@ -80,12 +80,15 @@ var versionedExpressions = map[string]expression{
 
 func main() {
 	log.SetFlags(0) // no timestamps on our logs
-
+	log.Println("***********************")
+	log.Println("*** Starting tfmask ***")
+	log.Println("***********************")
+	
 	// Character used to mask sensitive output
 	var tfmaskChar = getEnv("TFMASK_CHAR", "*")
 	// Pattern representing sensitive output
 	var tfmaskValuesRegex = getEnv("TFMASK_VALUES_REGEX",
-		"(?i)^.*(oauth|secret|token|password|key|result|id).*$")
+		"(?i)^.*(oauth|secret|token|password|key|result|id|recipient).*$")
 	// Pattern representing sensitive resource
 	var tfmaskResourceRegex = getEnv("TFMASK_RESOURCES_REGEX",
 		"(?i)^(random_id|random_string).*$")
